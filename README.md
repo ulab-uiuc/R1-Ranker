@@ -66,6 +66,12 @@ pip install wandb IPython matplotlib
 
 This section outlines the steps to generate the datasets used for DRanker and IRanker training and evaluation.
 
+### Raw Dataset
+
+The original raw dataset is available for download from Hugging Face:
+
+**Dataset Repository:** [ulab-ai/Ranking-bench](https://huggingface.co/datasets/ulab-ai/Ranking-bench)
+
 ### DRanker Dataset
 
 To generate the DRanker dataset, run the following command:
@@ -86,24 +92,39 @@ python examples/data_preprocess/iterative_data_generation.py
 
 The processed dataset will be saved to: `data/iterative_ranking`
 
-### Raw Dataset
-
-The original raw dataset is available for download from Hugging Face:
-
-**Dataset Repository:** [ulab-ai/Ranking-bench](https://huggingface.co/datasets/ulab-ai/Ranking-bench)
 
 
 ## ⭐Experiments
 
 
-### Training and Evaluation
+### 🧠 Training
 
-Run experiments and print/save evaluation results on metrics Performance, Cost, and Reward. You can edit the hyperparameters in `configs/config.yaml` or using your own config_file.
-
-
+To train DRanker, you can use this script:
 ```bash
-python run_exp.py --config_file [config]
+CUDA_VISIBLE_DEVICES=0,1,2,3
+N_GPUS=4
+BASE_MODEL=<path_to_base_model>
+DATA_DIR=data/direct_ranking
+ROLLOUT_TP_SIZE=1
+EXPERIMENT_NAME=direct_ranking
+VLLM_ATTENTION_BACKEND=XFORMERS
+bash ./scripts/Ranking_FM.sh
 ```
+The trained DRanker model will be saved in the folder of ./checkpoints/Ranking-FM/direct_ranking/actor.
+
+
+To train IRanker, you can use this script:
+```bash
+CUDA_VISIBLE_DEVICES=0,1,2,3
+N_GPUS=4
+BASE_MODEL=<path_to_base_model>
+DATA_DIR=data/iterative_ranking
+ROLLOUT_TP_SIZE=1
+EXPERIMENT_NAME=iterative_ranking
+VLLM_ATTENTION_BACKEND=XFORMERS
+bash ./scripts/Ranking_FM.sh
+```
+The trained IRanker model will be saved in the folder of ./checkpoints/Ranking-FM/iterative_ranking/actor.
 
 ## 🔍 Evaluation
 
@@ -143,11 +164,12 @@ The evaluation script supports the following datasets:
 ## Citation
 
 ```bibtex
-@inproceedings{feng2024graphrouter,
-  title={Graphrouter: A graph-based router for llm selections},
-  author={Feng, Tao and Shen, Yanzhen and You, Jiaxuan},
-  booktitle={The Thirteenth International Conference on Learning Representations},
-  year={2024}
+@misc{feng2025iranker,
+  title        = {IRanker: Towards Ranking Foundation Model},
+  author       = {Tao Feng and Zhigang Hua and Zijie Lei and Yan Xie and Shuang Yang and Bo Long and Jiaxuan You},
+  year         = {2025},
+  howpublished = {https://github.com/ulab-uiuc/IRanker},
+  note         = {Accessed: 2025-06-03}
 }
 ```
 
