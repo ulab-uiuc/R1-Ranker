@@ -33,11 +33,39 @@
 </p>
 
 
-<!-- ![Method](./figures/model.png) -->
+<!-- Applicable Scenarios Section -->
+<h3 align="center">📌 Applicable Scenarios</h3>
+
+<p align="center">
+  Our <b>Ranking FM</b> framework is designed to unify <b>Recommendation</b>, <b>Routing</b>, and <b>Passage Ranking</b> tasks under a single ranking foundation model. The figure below illustrates how it can be instantiated across these diverse applications.
+</p>
 
 <div align="center">
-  <img src="./figures/model.png" width="700" alt="GoR">
+  <img src="./figures/Instantiations.png" width="750" alt="Ranking FM Instantiations">
 </div>
+
+<br/>
+
+<!-- Method Section -->
+<h3 align="center">🧠 Method</h3>
+
+<p align="center">
+  We instantiate the Ranking FM using two RL-enhanced LLM frameworks: <b>DRanker</b> and <b>IRanker</b>.
+</p>
+
+<ul align="center">
+  <li><b>DRanker</b>: performs <i>direct ranking optimization</i> in a one-shot manner, predicting the full ranking list directly.</li>
+  <li><b>IRanker</b>: adopts an <i>iterative ranking formulation</i> that progressively refines the ranking list step-by-step.</li>
+</ul>
+
+<p align="center">
+  Despite their different training paradigms, both frameworks share a common objective: optimizing the ranking quality through reinforcement learning over LLM outputs.
+</p>
+
+<div align="center">
+  <img src="./figures/model.png" width="700" alt="Ranking FM Method">
+</div>
+
 
 
 ## 📌Preliminary
