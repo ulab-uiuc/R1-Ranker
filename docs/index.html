@@ -24,7 +24,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-  <title>GraphRouter: A Graph-Based Router for LLM Selections</title>
+  <title>IRanker: Towards Ranking Foundation Model</title>
 
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
@@ -57,26 +57,28 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">GraphRouter: A Graph-Based Router for LLM Selections</h1>
+            <h1 class="title is-1 publication-title">IRanker: Towards Ranking Foundation Model</h1>
             <div class="is-size-5 publication-authors">
-              <!-- Paper authors -->
-              <span class="author-block">
-                Tao Feng,
-              </span>
-                <span class="author-block">
-                  Yanzhen Shen,
-                </span>
-                  <span class="author-block">
-                    <span class="author-block">
-                      <a href="https://cs.stanford.edu/~jiaxuan/" target="_blank">Jiaxuan You</a></span>
-                    <span class="author-block">
-                
-                  </div>
-             
-                  <div class="is-size-5 publication-authors">
-                    <span class="author-block">
-                      University of Illinois Urbana-Champaign
-                  </div>
+  <!-- Paper authors -->
+  <span class="author-block"><b>Tao Feng<sup>1*</sup></b>,</span>
+  <span class="author-block"><b>Zhigang Hua<sup>3</sup></b>,</span>
+  <span class="author-block"><b>Zijie Lei<sup>1,2*</sup></b>,</span>
+  <span class="author-block"><b>Yan Xie<sup>3</sup></b>,</span>
+  <span class="author-block"><b>Shuang Yang<sup>3</sup></b>,</span>
+  <span class="author-block"><b>Bo Long<sup>3</sup></b>,</span>
+  <span class="author-block"><b><a href="https://cs.stanford.edu/~jiaxuan/" target="_blank">Jiaxuan You<sup>1*</sup></a></b></span>
+</div>
+
+<div class="is-size-6 publication-authors" style="margin-top: 0.5em;">
+  <span class="author-block"><sup>1</sup>University of Illinois Urbana-Champaign</span><br/>
+  <span class="author-block"><sup>2</sup>University of Southern California</span><br/>
+  <span class="author-block"><sup>3</sup>Meta AI</span>
+</div>
+
+<div class="is-size-6 publication-authors" style="margin-top: 0.5em;">
+  <span class="author-block">{taofeng2, jiaxuan}@illinois.edu, zijielei@usc.edu</span>
+</div>
+
 
                   <!-- ArXiv abstract Link -->
                 <span class="link-block">
@@ -91,7 +93,7 @@
 
                   <!-- Github link -->
                   <span class="link-block">
-                    <a href="https://github.com/ulab-uiuc/GraphRouter" target="_blank"
+                    <a href="https://github.com/ulab-uiuc/IRanker" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
@@ -99,6 +101,17 @@
                     <span>Code</span>
                   </a>
                 </span>
+            <!-- Hugging Face link -->
+<span class="link-block">
+  <a href="https://huggingface.co/datasets/ulab-ai/Ranking-bench" target="_blank"
+     class="external-link button is-normal is-rounded is-dark">
+    <span class="icon">
+      <i class="fas fa-database"></i> <!-- 可选: 也可用 fa-table, fa-cloud -->
+    </span>
+    <span>Dataset</span>
+  </a>
+</span>
+
 
         
             </div>
@@ -130,7 +143,29 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            The rapidly growing number and variety of Large Language Models (LLMs) present significant challenges in efficiently selecting the appropriate LLM for a given query, especially considering the trade-offs between performance and com- putational cost. Current LLM selection methods often struggle to generalize across new LLMs and different tasks because of their limited ability to leverage contextual interactions among tasks, queries, and LLMs, as well as their dependence on a transductive learning framework. To address these shortcomings, we introduce a novel inductive graph framework, named as GraphRouter, which fully utilizes the contextual information among tasks, queries, and LLMs to enhance the LLM selection process. GraphRouter constructs a heterogeneous graph comprising task, query, and LLM nodes, with interactions represented as edges, which ef- ficiently captures the contextual information between the query's requirements and the LLM's capabilities. Through an innovative edge prediction mechanism, GraphRouter is able to predict attributes (the effect and cost of LLM response) of potential edges, allowing for optimized recommendations that adapt to both existing and newly introduced LLMs without requiring retraining. Comprehen- sive experiments across three distinct effect-cost weight scenarios have shown that GraphRouter substantially surpasses existing routers, delivering a minimum per- formance improvement of 12.3%. In addition, it achieves enhanced generalization across new LLMs settings and supports diverse tasks with at least a 9.5% boost in effect and a significant reduction in computational demands. This work endeavors to apply a graph-based approach for the contextual and adaptive selection of LLMs, offering insights for real-world applications.
+            Ranking tasks are ubiquitous, encompassing applications such as recommendation
+systems, LLM routing, and item re-ranking. We propose to unify these tasks using
+a single ranking foundation model (FM), as it eliminates the need for designing
+different models for each specific ranking task. However, unlike general supervision
+tasks in LLMs, ranking tasks do not have clear labels for supervision, posing great
+challenges to developing a ranking FM. To overcome these challenges, we propose
+IRanker, a ranking FM framework with reinforcement learning (RL) and iterative
+decoding. Our insight is to decompose the complex ranking task into an iterative
+decoding process that eliminates the worst candidate from the candidate pool step
+by step, which significantly reduces the output combinatorial space and better
+utilizes the limited context length during RL training. We meticulously train
+and comprehensively evaluate an IRanker-3B model on nine datasets across three
+scenarios: recommendation, routing, and passage ranking. The results show that a
+single IRanker-3B achieves state-of-the-art results on several datasets compared to
+models of similar size, and even surpasses the performance of larger models on
+certain datasets. We further demonstrate the effectiveness of our RL design and the
+robustness of the iterative mechanism across different LLM sizes. Moreover, we
+conducted both in-domain and out-of-domain zero-shot generalization experiments,
+which showed that IRanker-3B achieved good generalization on in-domain ranking
+tasks compared to the base LLM by at least 5% improvement. Surprisingly, on
+out-of-domain generic LLM tasks, IRanker-3B outperformed the base model by at
+least 9% on GSM8K, IFEval, and MathQA. In addition, the thoughts generated by
+IRanker-3B during training could further enhance zero-shot LLM performance.
           </p>
         </div>
 
@@ -160,12 +195,12 @@
 
           <div class="content has-text-justified">
           
-            <p>The LLM selection process involves multiple steps, with the router being the most critical component. The router first receives the user query containing task information. Its goal is to choose an appropriate LLM based on the incoming information in the user query to ensure optimal performance and minimal cost (LLM API cost). After calculation, the router chooses a suitable LLMn to answer the user query. Finally, the response is returned to the user with its performance and cost. </p>
+            <p>Example ranking tasks that a proposed ranking FM can solve. </p>
             
           </div>
 
           <div class=" has-text-centered">
-            <img src="static/images/intro_1.png" alt="MY ALT TEXT"/>
+            <img src="static/images/Instantiations.png" alt="MY ALT TEXT"/>
           </div>
           <b class="subtitle is-size-6">
           </b>
@@ -180,10 +215,17 @@
         
         <div class="content has-text-justified">
           
-          <p>To fully utilize the contextual information for different queries and tasks, GraphRouter constructs a heterogeneous graph that contains three types of nodes: task node, query node and LLM node. The interaction information between them is represented as edges in a graph, which enables us to transform the task of predicting the cost and performance of an LLM-query pair to an edge prediction task. After forecasting the properties of the edges, we recommend the most suitable LLM to the user based on their preferences for performance and cost.</p>
+          <p>(a) The recommendation
+task aims to model the user’s preferences based on their historical behaviors. It will rank the current
+item candidates and predict which items the user is most likely to prefer.</p>
           
-          <p>In order to make GraphRouter generalizable to new LLMs, we make efforts in two key aspects. For the input, we utilize a generative LLM such as GPT-4o to generate a descriptive text for each LLM, and then we derive an initial embedding for each LLM using a moderate-size pre-trained language model. We also further develop a heterogeneous GNN that aggregates information from neighboring nodes of different types; As a result, given few-shot data, a trained GraphRouter can be generalized to new LLM nodes without retraining. </p>
-          
+          <p>(b) The routing task is to
+recommend suitable LLMs to respond to different user queries. The recommendation process takes
+into account the effectiveness and cost of each LLM’s response, and performs ranking to generate the
+final recommendation list.  </p>
+          <p>(c) Passage ranking involves retrieving a set of passages from candidate
+passages based on a given user query for retrieval-augmented generation. It ranks the passages by
+modeling the relevance between the query and the passages to produce the final list of passages.  </p>
        
         </div>
 
@@ -198,13 +240,23 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">2. The GraphRouter Framework</h2>
+        <h2 class="title is-3">2. Framework of our proposed ranking FMs.</h2>
         <div class="content">
           <div class=" has-text-centered">
-            <img src="static/images/intro_2.png" alt="MY ALT TEXT"/>
+            <img src="static/images/model.png" alt="MY ALT TEXT"/>
           </div>
           <p>
-            GraphRouter first transforms the interaction data among tasks, queries, and LLMs into a graph. Specifically, as shown in the right side of Figure above, we model tasks, queries, and LLMs in the left table as task nodes, query nodes, and LLM nodes, while the relationships derived from the interaction data are represented by edge features. We apply GNN to embed the node and edge features and use them for training and testing.
+            Both DRanker and IRanker are RL-enhanced
+LLM frameworks. They take as input the candidate information in text form, along with user
+information (such as user history or a query), and utilize the LLM’s reasoning capabilities to produce
+a final candidate ranking. This ranking is then evaluated by an evaluator to generate a corresponding
+reward function, which is used to optimize the decision-making of both rankers. The key distinctions
+are: 1) DRanker generates the full ranking in a single step, whereas IRanker iteratively excludes the
+least likely item from the candidates to arrive at the final ranking. 2) The reward in DRanker is a
+ranking reward based on the final candidate ranking, while the reward in IRanker is an exclusion
+reward given for each individual exclusion decision. 3) DRanker always receives the full set of
+candidates as input with a fixed size, whereas IRanker’s input candidates are dynamically updated
+based on the excluded items.
           </p>
         </div>
 
@@ -218,34 +270,102 @@
     <div class="columns is-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">4. Experiments</h2>
-        <h2 class="title is-4">4.1 Main Results</h2>
+        <h2 class="title is-4">4.1 Comparison with general baselines</h2>
         <div class="content has-text-justified">
           <p>
-            We compare GraphRouter with seven baselines in three scenarios. We can observe that GraphRouter consistently and substantially surpasses existing routers, delivering a minimum effect improvement of 12.28% on metric Reward compared to the strongest baselines. Additionally, we observe that GraphRouter achieves at least 88.89% of the optimal solution, further demonstrating the superiority of our framework. On the other hand, compared with the two rule-based LLM, GraphRouter achieves a better trade-off between Performance and Cost, therefore achieving a higher effect on Reward. We demonstrate that without sufficient contextualized information, even LLM and trained moderate-size LM struggle to understand the query and candidates LLM effectively, even if we ignore their high inference costs. These comparisons and results validate our claim that effective usage of contextual information is crucial for selecting the optimal LLM.
+            Model performance comparison with general baselines across nine ranking tasks of
+three scenarios on MRR. Bold and underline denote the best and second-best results. We can observe
+the following: 1) Compared to the baselines, IRanker-3B achieves state-of-the-art performance in
+almost all tasks. 2) The comparison between methods with and without RL validates the enhancement
+effect of RL on ranking tasks. 3) The comparison between iterative-based ranking and direct ranking
+demonstrates the suitability of the iterative design for models of different sizes.
 
           </p>
         </div>
         <div class="content">
           <div class=" has-text-centered">
-            <img src="static/images/Main_results.png"  alt="MY ALT TEXT"/>
+            <img src="static/images/i1.png"  alt="MY ALT TEXT"/>
           </div>
   
         </div>
       
 
-        <h2 class="title is-4">4.2 Generalization ability to new LLMs</h2>
+        <h2 class="title is-4">4.2 Comparison with task-specific baselines</h2>
         <div class="content has-text-justified">
           <p>
-            In addition to the main results, we also validate the generalization ability of GraphRouter when facing new LLMs. 
+            IRanker-3B matches the performance of domain-specific methods across multiple
+tasks with fewer training samples and smaller model size. We compared the performance
+of IRanker-3B against three representative SOTA methods and Qwen2.5-3B-Instruct-iter across
+three scenarios. SOTA-1, SOTA-2, and SOTA-3 correspond to SASRec, BPR, and R1-Rec in the
+recommendation (Rec) scenario; GraphRouter, RouterBert, and RouterKNN in the routing (Router)
+scenario; RankLLama-8B, RankBERT, and MonoT5 in the passage ranking (Passage) scenario. 
           </p>
         </div>
         
         <div class="content">
           <div class=" has-text-centered">
-            <img src="static/images/Generalization.png"  alt="MY ALT TEXT"/>
+            <img src="static/images/i2.png"  alt="MY ALT TEXT"/>
           </div>
   
         </div>
+
+<h2 class="title is-4">4.3 Zero-shot performance</h2>
+<div class="content has-text-justified">
+  <p>
+    Zero-shot performance comparison across different ranking tasks on MRR. Bold and
+underline denote the best and second-best results. The results for each ranking scenario were obtained
+by training on the data from the other two ranking scenarios and then performing zero-shot testing on
+the target scenario.
+  </p>
+</div>
+
+<div class="content">
+  <div class="has-text-centered">
+    <img src="static/images/i3.png" alt="Ablation Study Results"/>
+  </div>
+</div>
+
+        <h2 class="title is-4">4.4 Effects of thoughts emerged by IRanker</h2>
+<div class="content has-text-justified">
+  <p>
+    Thoughts emerged by IRanker during training can enhance zero-shot performance
+of the base model. IRanker-COT-3B is an iterative framework that, for each test query, retrieves
+similar queries and their corresponding thoughts that emerged during the training of IRanker, using
+them as thought templates to guide zero-shot responses. We evaluate IRanker-COT-3B on nine tasks
+and compare its performance with IRanker-3B and Qwen2.5-3B-Instruct-iter. The results show that
+IRanker-COT-3B consistently outperforms Qwen2.5-3B-Instruct-iter and even surpasses IRanker-3B
+in the Rec-Game task.
+  </p>
+</div>
+
+<div class="content">
+  <div class="has-text-centered">
+    <img src="static/images/i4.png" alt="Ablation Study Results"/>
+  </div>
+</div>
+
+        <h2 class="title is-4">4.5 Generalization on  out-of-domain generic LLM tasks</h2>
+<div class="content has-text-justified">
+  <p>
+    IRanker outperformed the base model on three out-of-domain generic LLM tasks.
+Bolded values indicate higher performance. This table compares the performance of IRanker-3B
+and Qwen2.5-3B-Instruct across eight widely-used benchmarks. IRanker-3B leads in five out of
+eight tasks, especially on math and reasoning-heavy datasets like GSM8K, IFEval, and MathQA.
+Qwen2.5-3B-Instruct performs better on code generation tasks, including MBPP and HumanEval.
+The models are nearly tied on general QA tasks like OpenBookQA and HellaSwag. These results
+highlight IRanker-3B’s strength in structured reasoning, while Qwen2.5-3B-Instruct maintains a
+slight edge in coding ability.
+  </p>
+</div>
+
+<div class="content">
+  <div class="has-text-centered">
+    <img src="static/images/i5.png" alt="Ablation Study Results"/>
+  </div>
+</div>
+
+
+        
 
       </div>
     </div>
@@ -385,11 +505,12 @@
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@inproceedings{feng2024graphrouter,
-  title={GraphRouter: A Graph-based Router for LLM Selections},
-  author={Feng, Tao and Shen, Yanzhen and You, Jiaxuan},
-  booktitle={The Thirteenth International Conference on Learning Representations},
-  year={2024}
+    <pre><code>@misc{feng2025iranker,
+  title        = {IRanker: Towards Ranking Foundation Model},
+  author       = {Tao Feng and Zhigang Hua and Zijie Lei and Yan Xie and Shuang Yang and Bo Long and Jiaxuan You},
+  year         = {2025},
+  howpublished = {https://github.com/ulab-uiuc/IRanker},
+  note         = {Accessed: 2025-06-03}
 }</code></pre>
   </div>
 </section>
