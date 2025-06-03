@@ -176,20 +176,22 @@ python eval/eval.py --dataset <dataset_name> --model_path <path_to_model>
 
 The evaluation script supports the following datasets:
 
-#### Passage Ranking
-- `Passage-5` 
-- `Passage-7` 
-- `Passage-9` 
-
-#### Router Tasks
-- `Router-Performance`
-- `Router-Balance` 
-- `Router-Cost` 
-
 #### Recommendation Systems
 - `Rec-Movie` 
 - `Rec-Music` 
 - `Rec-Game`
+ 
+
+#### Router Tasks
+- `Router-Performance`
+- `Router-Balance` 
+- `Router-Cost`
+
+#### Passage Ranking
+- `Passage-5` 
+- `Passage-7` 
+- `Passage-9`
+
 
 ## 📝 Acknowledgement
 
