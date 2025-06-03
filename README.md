@@ -28,9 +28,9 @@
 
 <p align="center">
     <a href="https://ulab-uiuc.github.io/GraphRouter/">🌐 Project Page</a> |
-    <a href="http://arxiv.org/abs/2410.03834">📜 arXiv</a>
-    <!-- <a href="xxx">📮 Twitter Post</a> -->
-<p>
+    <a href="http://arxiv.org/abs/2410.03834">📜 arXiv</a> |
+    <a href="https://huggingface.co/datasets/ulab-ai/Ranking-bench">🤗 HuggingFace</a>
+</p>
 
 
 <!-- ![Method](./figures/model.png) -->
@@ -108,6 +108,7 @@ DATA_DIR=data/direct_ranking
 ROLLOUT_TP_SIZE=1
 EXPERIMENT_NAME=direct_ranking
 VLLM_ATTENTION_BACKEND=XFORMERS
+
 bash ./scripts/Ranking_FM.sh
 ```
 The trained DRanker model will be saved in the folder of ./checkpoints/Ranking-FM/direct_ranking/actor.
@@ -122,6 +123,7 @@ DATA_DIR=data/iterative_ranking
 ROLLOUT_TP_SIZE=1
 EXPERIMENT_NAME=iterative_ranking
 VLLM_ATTENTION_BACKEND=XFORMERS
+
 bash ./scripts/Ranking_FM.sh
 ```
 The trained IRanker model will be saved in the folder of ./checkpoints/Ranking-FM/iterative_ranking/actor.
