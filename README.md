@@ -157,9 +157,9 @@ bash ./scripts/Ranking_FM.sh
 ```
 The trained IRanker model will be saved in the folder of ./checkpoints/Ranking-FM/iterative_ranking/actor.
 
-## 🔍 Evaluation
+### 🔍 Evaluation
 
-### Running Evaluation
+#### Running Evaluation
 
 To evaluate a model on a specific dataset, use the following command:
 
@@ -167,12 +167,12 @@ To evaluate a model on a specific dataset, use the following command:
 python eval/eval.py --dataset <dataset_name> --model_path <path_to_model>
 ```
 
-### Parameters
+#### Parameters
 
 - `--dataset`: Specifies the dataset to evaluate on
 - `--model_path`: Path to the trained model you want to evaluate
 
-### Supported Datasets
+#### Supported Datasets
 
 The evaluation script supports the following datasets:
 
