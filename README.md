@@ -53,10 +53,11 @@
   We instantiate the Ranking FM using two RL-enhanced LLM frameworks: <b>DRanker</b> and <b>IRanker</b>.
 </p>
 
-<ul align="center">
+<ul style="text-align: left; margin: 0 auto; max-width: 700px;">
   <li><b>DRanker</b>: performs <i>direct ranking optimization</i> in a one-shot manner, predicting the full ranking list directly.</li>
   <li><b>IRanker</b>: adopts an <i>iterative ranking formulation</i> that progressively refines the ranking list step-by-step.</li>
 </ul>
+
 
 <p align="center">
   Despite their different training paradigms, both frameworks share a common objective: optimizing the ranking quality through reinforcement learning over LLM outputs.
