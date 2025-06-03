@@ -1,7 +1,7 @@
 # IRanker: Towards Ranking Foundation Model
 
 <p align="center">
-    <a href="https://ulab-uiuc.github.io/GraphRouter/">
+    <a href="https://ulab-uiuc.github.io/IRanker/">
         <img alt="Build" src="https://img.shields.io/badge/Project-Page-blue">
     </a>
     <a href="http://arxiv.org/abs/2410.03834">
@@ -10,24 +10,24 @@
     <!-- <a href="xxx">
         <img alt="Build" src="https://img.shields.io/badge/Twitter-black?logo=X">
     </a> -->
-    <a href="https://github.com/ulab-uiuc/GraphRouter/blob/master/LICENSE">
+    <a href="https://github.com/ulab-uiuc/IRanker/blob/master/LICENSE">
         <img alt="License" src="https://img.shields.io/badge/LICENSE-MIT-green">
     </a>
     <br>
-    <a href="https://github.com/ulab-uiuc/GraphRouter">
-        <img alt="Build" src="https://img.shields.io/github/stars/ulab-uiuc/GraphRouter">
+    <a href="https://github.com/ulab-uiuc/IRanker">
+        <img alt="Build" src="https://img.shields.io/github/stars/ulab-uiuc/IRanker">
     </a>
-    <a href="https://github.com/ulab-uiuc/GraphRouter">
-        <img alt="Build" src="https://img.shields.io/github/forks/ulab-uiuc/GraphRouter">
+    <a href="https://github.com/ulab-uiuc/IRanker">
+        <img alt="Build" src="https://img.shields.io/github/forks/ulab-uiuc/IRanker">
     </a>
-    <a href="https://github.com/ulab-uiuc/GraphRouter">
-        <img alt="Build" src="https://img.shields.io/github/issues/ulab-uiuc/GraphRouter">
+    <a href="https://github.com/ulab-uiuc/IRanker">
+        <img alt="Build" src="https://img.shields.io/github/issues/ulab-uiuc/IRanker">
     </a>
 </p>
 
 
 <p align="center">
-    <a href="https://ulab-uiuc.github.io/GraphRouter/">🌐 Project Page</a> |
+    <a href="https://ulab-uiuc.github.io/IRanker/">🌐 Project Page</a> |
     <a href="http://arxiv.org/abs/2410.03834">📜 arXiv</a> |
     <a href="https://huggingface.co/datasets/ulab-ai/Ranking-bench">🤗 HuggingFace</a>
 </p>
