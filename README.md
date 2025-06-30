@@ -28,7 +28,7 @@
 
 <p align="center">
     <a href="https://ulab-uiuc.github.io/IRanker/">🌐 Project Page</a> |
-    <a href="http://arxiv.org/abs/2410.03834">📜 arXiv</a> |
+    <a href="https://arxiv.org/pdf/2506.21638">📜 arXiv</a> |
     <a href="https://huggingface.co/datasets/ulab-ai/Ranking-bench">🤗 HuggingFace</a>
 </p>
 
