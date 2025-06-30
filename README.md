@@ -4,7 +4,7 @@
     <a href="https://ulab-uiuc.github.io/IRanker/">
         <img alt="Build" src="https://img.shields.io/badge/Project-Page-blue">
     </a>
-    <a href="http://arxiv.org/abs/2410.03834">
+    <a href="https://arxiv.org/abs/2506.21638">
         <img alt="Build" src="https://img.shields.io/badge/arXiv-2410.11001-red?logo=arxiv">
     </a>
     <!-- <a href="xxx">
