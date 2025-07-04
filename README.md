@@ -202,12 +202,11 @@ We sincerely appreciate the efforts of these teams for their contributions to op
 ## Citation
 
 ```bibtex
-@misc{feng2025iranker,
-  title        = {IRanker: Towards Ranking Foundation Model},
-  author       = {Tao Feng and Zhigang Hua and Zijie Lei and Yan Xie and Shuang Yang and Bo Long and Jiaxuan You},
-  year         = {2025},
-  howpublished = {https://github.com/ulab-uiuc/IRanker},
-  note         = {Accessed: 2025-06-03}
+@article{feng2025iranker,
+  title={IRanker: Towards Ranking Foundation Model},
+  author={Feng, Tao and Hua, Zhigang and Lei, Zijie and Xie, Yan and Yang, Shuang and Long, Bo and You, Jiaxuan},
+  journal={arXiv preprint arXiv:2506.21638},
+  year={2025}
 }
 ```
 
