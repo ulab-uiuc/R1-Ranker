@@ -64,7 +64,7 @@
 </p>
 
 <div align="center">
-  <img src="./figures/model.png" width="700" alt="Ranking FM Method">
+  <img src="./figures/model_1.png" width="700" alt="Ranking FM Method">
 </div>
 
 
