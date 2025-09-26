@@ -1,4 +1,4 @@
-# IRanker: Towards Ranking Foundation Model
+# R1-Ranker: Teaching LLM Rankers to Reason
 
 <p align="center">
     <a href="https://ulab-uiuc.github.io/IRanker/">
