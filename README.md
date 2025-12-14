@@ -1,72 +1,43 @@
-# R1-Ranker: Teaching LLM Rankers to Reason
+# IRanker: Towards Ranking Foundation Model
 
 <p align="center">
-    <a href="https://ulab-uiuc.github.io/IRanker/">
+    <a href="https://ulab-uiuc.github.io/GraphRouter/">
         <img alt="Build" src="https://img.shields.io/badge/Project-Page-blue">
     </a>
-    <a href="https://arxiv.org/abs/2506.21638">
+    <a href="http://arxiv.org/abs/2410.03834">
         <img alt="Build" src="https://img.shields.io/badge/arXiv-2410.11001-red?logo=arxiv">
     </a>
     <!-- <a href="xxx">
         <img alt="Build" src="https://img.shields.io/badge/Twitter-black?logo=X">
     </a> -->
-    <a href="https://github.com/ulab-uiuc/IRanker/blob/master/LICENSE">
+    <a href="https://github.com/ulab-uiuc/GraphRouter/blob/master/LICENSE">
         <img alt="License" src="https://img.shields.io/badge/LICENSE-MIT-green">
     </a>
     <br>
-    <a href="https://github.com/ulab-uiuc/IRanker">
-        <img alt="Build" src="https://img.shields.io/github/stars/ulab-uiuc/IRanker">
+    <a href="https://github.com/ulab-uiuc/GraphRouter">
+        <img alt="Build" src="https://img.shields.io/github/stars/ulab-uiuc/GraphRouter">
     </a>
-    <a href="https://github.com/ulab-uiuc/IRanker">
-        <img alt="Build" src="https://img.shields.io/github/forks/ulab-uiuc/IRanker">
+    <a href="https://github.com/ulab-uiuc/GraphRouter">
+        <img alt="Build" src="https://img.shields.io/github/forks/ulab-uiuc/GraphRouter">
     </a>
-    <a href="https://github.com/ulab-uiuc/IRanker">
-        <img alt="Build" src="https://img.shields.io/github/issues/ulab-uiuc/IRanker">
+    <a href="https://github.com/ulab-uiuc/GraphRouter">
+        <img alt="Build" src="https://img.shields.io/github/issues/ulab-uiuc/GraphRouter">
     </a>
 </p>
 
 
 <p align="center">
-    <a href="https://ulab-uiuc.github.io/IRanker/">🌐 Project Page</a> |
-    <a href="https://arxiv.org/pdf/2506.21638">📜 arXiv</a> |
-    <a href="https://huggingface.co/datasets/ulab-ai/Ranking-bench">🤗 HuggingFace</a>
-</p>
+    <a href="https://ulab-uiuc.github.io/GraphRouter/">🌐 Project Page</a> |
+    <a href="http://arxiv.org/abs/2410.03834">📜 arXiv</a>
+    <!-- <a href="xxx">📮 Twitter Post</a> -->
+<p>
 
 
-<!-- Applicable Scenarios Section -->
-<h3 align="center">📌 Applicable Scenarios</h3>
-
-<p align="center">
-  Our <b>Ranking FM</b> framework is designed to unify <b>Recommendation</b>, <b>Routing</b>, and <b>Passage Ranking</b> tasks under a single ranking foundation model. The figure below illustrates how it can be instantiated across these diverse applications.
-</p>
+<!-- ![Method](./figures/model.png) -->
 
 <div align="center">
-  <img src="./figures/Instantiations.png" width="750" alt="Ranking FM Instantiations">
+  <img src="./figures/model.png" width="700" alt="GoR">
 </div>
-
-<br/>
-
-<!-- Method Section -->
-<h3 align="center">🧠 Method</h3>
-
-<p align="center">
-  We instantiate the Ranking FM using two RL-enhanced LLM frameworks: <b>DRanker</b> and <b>IRanker</b>.
-</p>
-
-<ul style="text-align: left; margin: 0 auto; max-width: 700px;">
-  <li><b>DRanker</b>: performs <i>direct ranking optimization</i> in a one-shot manner, predicting the full ranking list directly.</li>
-  <li><b>IRanker</b>: adopts an <i>iterative ranking formulation</i> that progressively refines the ranking list step-by-step.</li>
-</ul>
-
-
-<p align="center">
-  Despite their different training paradigms, both frameworks share a common objective: optimizing the ranking quality through reinforcement learning over LLM outputs.
-</p>
-
-<div align="center">
-  <img src="./figures/model_1.png" width="700" alt="Ranking FM Method">
-</div>
-
 
 
 ## 📌Preliminary
@@ -95,12 +66,6 @@ pip install wandb IPython matplotlib
 
 This section outlines the steps to generate the datasets used for DRanker and IRanker training and evaluation.
 
-### Raw Dataset
-
-The original raw dataset is available for download from Hugging Face:
-
-**Dataset Repository:** [ulab-ai/Ranking-bench](https://huggingface.co/datasets/ulab-ai/Ranking-bench)
-
 ### DRanker Dataset
 
 To generate the DRanker dataset, run the following command:
@@ -121,45 +86,41 @@ python examples/data_preprocess/iterative_data_generation.py
 
 The processed dataset will be saved to: `data/iterative_ranking`
 
+### Raw Dataset
+
+The original raw dataset is available for download from Hugging Face:
+
+**Dataset Repository:** [ulab-ai/Ranking-bench](https://huggingface.co/datasets/ulab-ai/Ranking-bench)
 
 
 ## ⭐Experiments
 
 
-### 🧠 Training
+### Training
 
-To train DRanker, you can use this script:
+To train IRanker (Iterative Deletion Ranker) or DRanker (Direct Ranking Ranker), use the provided training scripts:
+
 ```bash
-CUDA_VISIBLE_DEVICES=0,1,2,3
-N_GPUS=4
-BASE_MODEL=<path_to_base_model>
-DATA_DIR=data/direct_ranking
-ROLLOUT_TP_SIZE=1
-EXPERIMENT_NAME=direct_ranking
-VLLM_ATTENTION_BACKEND=XFORMERS
+# Set required environment variables
+export N_GPUS=2
+export BASE_MODEL=/path/to/base/model
+export DATA_DIR=data/iterative_ranking  # for IRanker
+# or
+export DATA_DIR=data/direct_ranking      # for DRanker
+export ROLLOUT_TP_SIZE=2
+export EXPERIMENT_NAME=my_experiment
 
-bash ./scripts/Ranking_FM.sh
+# Run training
+bash scripts/train_iranker.sh  # for IRanker
+# or
+bash scripts/train_dranker.sh  # for DRanker
 ```
-The trained DRanker model will be saved in the folder of ./checkpoints/Ranking-FM/direct_ranking/actor.
 
+Checkpoints will be saved to `checkpoints/Ranking-FM/<experiment_name>/`.
 
-To train IRanker, you can use this script:
-```bash
-CUDA_VISIBLE_DEVICES=0,1,2,3
-N_GPUS=4
-BASE_MODEL=<path_to_base_model>
-DATA_DIR=data/iterative_ranking
-ROLLOUT_TP_SIZE=1
-EXPERIMENT_NAME=iterative_ranking
-VLLM_ATTENTION_BACKEND=XFORMERS
+## 🔍 Evaluation
 
-bash ./scripts/Ranking_FM.sh
-```
-The trained IRanker model will be saved in the folder of ./checkpoints/Ranking-FM/iterative_ranking/actor.
-
-### 🔍 Evaluation
-
-#### Running Evaluation
+### Running Evaluation
 
 To evaluate a model on a specific dataset, use the following command:
 
@@ -167,46 +128,39 @@ To evaluate a model on a specific dataset, use the following command:
 python eval/eval.py --dataset <dataset_name> --model_path <path_to_model>
 ```
 
-#### Parameters
+### Parameters
 
 - `--dataset`: Specifies the dataset to evaluate on
 - `--model_path`: Path to the trained model you want to evaluate
 
-#### Supported Datasets
+### Supported Datasets
 
 The evaluation script supports the following datasets:
+
+#### Passage Ranking
+- `Passage-5` 
+- `Passage-7` 
+- `Passage-9` 
+
+#### Router Tasks
+- `Router-Performance`
+- `Router-Balance` 
+- `Router-Cost` 
 
 #### Recommendation Systems
 - `Rec-Movie` 
 - `Rec-Music` 
 - `Rec-Game`
- 
 
-#### Router Tasks
-- `Router-Performance`
-- `Router-Balance` 
-- `Router-Cost`
-
-#### Passage Ranking
-- `Passage-5` 
-- `Passage-7` 
-- `Passage-9`
-
-
-## 📝 Acknowledgement
-
-The concept of **IRanker** is inspired by [Deepseek-R1](https://github.com/deepseek-ai/DeepSeek-RL) and [TinyZero](https://github.com/OpenLLM-TinyModels/TinyZero). Its implementation is built upon [veRL](https://github.com/PKU-Alignment/veRL).
-
-We sincerely appreciate the efforts of these teams for their contributions to open-source research and development.
 
 ## Citation
 
 ```bibtex
-@article{feng2025iranker,
-  title={IRanker: Towards Ranking Foundation Model},
-  author={Feng, Tao and Hua, Zhigang and Lei, Zijie and Xie, Yan and Yang, Shuang and Long, Bo and You, Jiaxuan},
-  journal={arXiv preprint arXiv:2506.21638},
-  year={2025}
+@inproceedings{feng2024graphrouter,
+  title={Graphrouter: A graph-based router for llm selections},
+  author={Feng, Tao and Shen, Yanzhen and You, Jiaxuan},
+  booktitle={The Thirteenth International Conference on Learning Representations},
+  year={2024}
 }
 ```
 
